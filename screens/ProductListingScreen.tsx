@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import useProducts from '../hooks/useProducts';
 import ProductList from '../components/ProductList';
 import FilterBar from '../components/FilterBar';
@@ -9,6 +9,7 @@ import Loader from '../components/Loader';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import ScreenHeader from '../components/ScreenHeader';
 
 export default function ProductListingScreen() {
   const navigation =
@@ -42,21 +43,37 @@ export default function ProductListingScreen() {
   };
 
   return (
-    <View style={{ flex: 1, padding: 16 }}>
-      <FilterBar
-        category={filters.category}
-        priceRange={filters.priceRange}
-        setCategory={setFilter}
-        setPriceRange={setPriceRange}
-      />
-      <SortMenu sortBy={filters.sortBy} setSort={setSort} />
-      <ProductList products={products} onProductPress={handleProductPress} />
-      <PaginationControls
-        page={filters.page}
-        nextPage={nextPage}
-        prevPage={prevPage}
-        loading={loading}
-      />
+    <View style={styles.container}>
+      <ScreenHeader title="Products" />
+      <View style={{ flex: 1, padding: 16 }}>
+        <FilterBar
+          category={filters.category}
+          priceRange={filters.priceRange}
+          setCategory={setFilter}
+          setPriceRange={setPriceRange}
+        />
+        <SortMenu sortBy={filters.sortBy} setSort={setSort} />
+        <ProductList products={products} onProductPress={handleProductPress} />
+        <PaginationControls
+          page={filters.page}
+          nextPage={nextPage}
+          prevPage={prevPage}
+          loading={loading}
+        />
+      </View>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  header: {
+    padding: 16,
+    backgroundColor: '#f8f8f8',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+  },
+});

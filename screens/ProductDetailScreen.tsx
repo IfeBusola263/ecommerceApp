@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import { getProductById } from '../api/productService';
 import { Product } from '../types';
+import ScreenHeader from '../components/ScreenHeader';
+import theme from '../styles/theme';
 
 export default function ProductDetailScreen() {
   const route = useRoute<RouteProp<{ params: { id: string } }, 'params'>>();
+  const navigation = useNavigation();
   const [product, setProduct] = useState<Product | null>(null);
 
   useEffect(() => {
@@ -17,6 +20,11 @@ export default function ProductDetailScreen() {
   if (!product) {
     return (
       <View style={styles.container}>
+        <ScreenHeader
+          title="Product Details"
+          backButton
+          onBackPress={() => navigation.goBack()}
+        />
         <Text>Loading...</Text>
       </View>
     );
@@ -24,6 +32,11 @@ export default function ProductDetailScreen() {
 
   return (
     <View style={styles.container}>
+      <ScreenHeader
+        title="Product Details"
+        backButton
+        onBackPress={() => navigation.goBack()}
+      />
       <Text style={styles.name}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
       <Text style={styles.category}>{product.category}</Text>
@@ -37,18 +50,23 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 16,
+    padding: theme.spacing.lg,
+    backgroundColor: theme.colors.background,
   },
   name: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    marginBottom: 8,
+    fontWeight: 'bold', // Use valid RN value
+    fontSize: theme.fontSizes.large,
+    marginBottom: theme.spacing.md,
+    color: theme.colors.text,
   },
   price: {
-    color: 'green',
-    marginBottom: 8,
+    color: theme.colors.primary,
+    marginBottom: theme.spacing.md,
+    fontWeight: 'bold', // Use valid RN value
+    fontSize: theme.fontSizes.medium,
   },
   category: {
-    color: '#888',
+    color: theme.colors.muted,
+    fontSize: theme.fontSizes.medium,
   },
 });

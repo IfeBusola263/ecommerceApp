@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, Button, Text, StyleSheet } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
+import theme from '../styles/theme';
 
 interface Props {
   page: number;
@@ -16,9 +23,28 @@ export default function PaginationControls({
 }: Props) {
   return (
     <View style={styles.container}>
-      <Button title="Prev" onPress={prevPage} disabled={page <= 1 || loading} />
+      <TouchableOpacity
+        style={[styles.button, page <= 1 && styles.buttonDisabled]}
+        onPress={prevPage}
+        disabled={page <= 1 || loading}
+      >
+        <Text style={styles.buttonText}>Prev</Text>
+      </TouchableOpacity>
       <Text style={styles.page}>Page {page}</Text>
-      <Button title="Next" onPress={nextPage} disabled={loading} />
+      <TouchableOpacity
+        style={[styles.button, loading && styles.buttonDisabled]}
+        onPress={nextPage}
+        disabled={loading}
+      >
+        <Text style={styles.buttonText}>Next</Text>
+      </TouchableOpacity>
+      {loading && (
+        <ActivityIndicator
+          style={{ marginLeft: 12 }}
+          size="small"
+          color="#3461b2"
+        />
+      )}
     </View>
   );
 }
@@ -28,10 +54,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 16,
+    marginVertical: theme.spacing.lg,
   },
   page: {
-    marginHorizontal: 16,
+    marginHorizontal: theme.spacing.md,
     fontWeight: 'bold',
+    color: theme.colors.text,
+  },
+  button: {
+    backgroundColor: theme.colors.primary,
+    paddingVertical: theme.spacing.sm,
+    paddingHorizontal: theme.spacing.lg,
+    borderRadius: 16,
+    marginHorizontal: theme.spacing.xs,
+  },
+  buttonDisabled: {
+    backgroundColor: theme.colors.surface,
+  },
+  buttonText: {
+    color: theme.colors.background,
+    fontWeight: 'bold',
+    fontSize: theme.fontSizes.small,
   },
 });

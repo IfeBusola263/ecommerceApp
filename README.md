@@ -1,97 +1,111 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# EcommerceApp
 
-# Getting Started
+A modular, testable React Native e-commerce product listing app built with Redux Toolkit, React Navigation, and TypeScript.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+## Features
+- Product listing with filtering, sorting, and pagination
+- Product detail screen
+- Modular, reusable components
+- Redux state management
+- Custom hooks
+- Navigation between screens
+- Unit tests for slices and hooks
 
-## Step 1: Start Metro
+## Architecture & Design
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Folder Structure
+- **api/**: Product API service (mocked)
+- **components/**: Reusable UI components
+- **hooks/**: Custom React hooks
+- **navigation/**: App navigator
+- **screens/**: Main app screens
+- **store/**: Redux slices, hooks, root reducer
+- **styles/**: Colors, spacing, global styles
+- **utils/**: Constants, helpers
+- **types.ts**: Shared types
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+### State Management
+- **Redux Toolkit** for global state
+- Slices: `productSlice`, `filterSlice`
+- Async thunks for API calls
+- Custom hooks for typed dispatch/selectors
 
+### Navigation
+- **React Navigation** with stack navigator
+- Screens: Product listing, product detail
+- Navigation params for product ID
+
+### Components
+- **ProductCard**: Displays product info
+- **ProductList**: Renders list of products
+- **FilterBar**: Category/price filter
+- **SortMenu**: Sorting options
+- **PaginationControls**: Paging UI
+- **Loader**: Loading indicator
+
+### Testing
+- Unit tests for slices and hooks in `__tests__`
+- Use Jest and React Testing Library
+
+### Extensibility
+- Add more screens/components as needed
+- Easily swap mock API for real backend
+
+## Getting Started
+
+### Prerequisites
+- Node.js & npm/yarn
+- React Native CLI
+- Android Studio/Xcode for emulators
+- CocoaPods (for iOS)
+
+### Installation
+1. Clone the repo
+2. Install dependencies:
+   ```sh
+   npm install
+   # or
+   yarn
+   ```
+3. For iOS, install pods:
+   ```sh
+   cd ios && pod install
+   ```
+
+### Running the App
+- Start Metro:
+  ```sh
+  npm start
+  # or
+  yarn start
+  ```
+- Run on Android:
+  ```sh
+  npm run android
+  # or
+  yarn android
+  ```
+- Run on iOS:
+  ```sh
+  npm run ios
+  # or
+  yarn ios
+  ```
+
+## Testing
+Run unit tests:
 ```sh
-# Using npm
-npm start
-
-# OR using Yarn
-yarn start
+npm test
+# or
+yarn test
 ```
 
-## Step 2: Build and run your app
+## Documentation
+- `task.md`: Step-by-step implementation phases
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Troubleshooting
+See React Native [Troubleshooting](https://reactnative.dev/docs/troubleshooting).
 
-### Android
 
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### iOS
-
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
-```
-
-Then, and every time you update your native dependencies, run:
-
-```sh
-bundle exec pod install
-```
-
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
-
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
-
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
-
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+## License
+MIT
