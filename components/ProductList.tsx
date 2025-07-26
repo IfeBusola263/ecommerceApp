@@ -1,5 +1,12 @@
 import React, { useCallback } from 'react';
-import { FlatList, StyleSheet, View, Text, RefreshControl, Animated } from 'react-native';
+import {
+  FlatList,
+  StyleSheet,
+  View,
+  Text,
+  RefreshControl,
+  Animated,
+} from 'react-native';
 import { Product } from '../types';
 import ProductCard from './ProductCard';
 import theme from '../styles/theme';
